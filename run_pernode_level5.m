@@ -47,7 +47,6 @@ for i = 1:1:max_line
     end
     whitch_line = out1_frame(i,1) - 2;
 %     if(out1_frame(i,1) <= 9)
-%     %对于第9号视频之前是组合，现在拆分为9和14，就不需要两组数据和为1个视频编号来源了，统一减2
 %         whitch_line = out1_frame(i,1) - 2;
 %     elseif(out1_frame(i,1) >= 10)
 %         whitch_line = out1_frame(i,1) - 1;
@@ -124,21 +123,6 @@ for i = 1:1:max_line
         out0_frame_state_cnt = strings(1,out0_col);
         out_frame_count(out1_frame(i,2),(3:5)) = [out0_frame_zero,out0_frame_normal,out0_frame_x];
         out_frame_count(out1_frame(i,2),(18:19)) = [(out0_frame_normal+out0_frame_x),out0_frame_normal/(out0_frame_normal+out0_frame_x)];
-%         out_frame_count(out1_frame(i,2),(15:16)) = [(64-out1_frame_zero),(64-out1_frame_zero-out1_frame_x)/(64-out1_frame_zero)];
-%         out_frame_count(out1_frame(i,2),27) = 64-out1_frame_zero-out1_frame_x - out1_frame_normal;
-%         if(out1_frame(i,1) == 7 || out1_frame(i,1) == 8 || out1_frame(i,1) == 9 || out1_frame(i,1) == 10)
-%             out_frame_count(out1_frame(i,2),24) = out1_frame_normal/(out1_frame_normal+out1_frame_x);
-%             out_frame_count(out1_frame(i,2),25) = nan;
-%             out_frame_count(out1_frame(i,2),26) = nan;
-%         elseif(out1_frame(i,1) == 11 || out1_frame(i,1) == 12 || out1_frame(i,1) == 13 || out1_frame(i,1) == 14)
-%             out_frame_count(out1_frame(i,2),24) = nan;
-%             out_frame_count(out1_frame(i,2),25) = out1_frame_normal/(out1_frame_normal+out1_frame_x);
-%             out_frame_count(out1_frame(i,2),26) = nan;
-%         elseif(out1_frame(i,1) == 3 || out1_frame(i,1) == 4 || out1_frame(i,1) == 5 || out1_frame(i,1) == 6)
-%             out_frame_count(out1_frame(i,2),24) = nan;
-%             out_frame_count(out1_frame(i,2),25) = nan;
-%             out_frame_count(out1_frame(i,2),26) = out1_frame_normal/(out1_frame_normal+out1_frame_x);
-%         end
         
         for j = 1:1:out1_col
             if(j ~= 9 && j ~= 18 && j ~= 27 && j ~= 36 && j ~= 45 && j ~= 54 && j ~= 63)
@@ -152,48 +136,12 @@ for i = 1:1:max_line
                         out1_frame_state(1,j) = 1;
                         out1_frame_zero = out1_frame_zero - 1;
                     end
-%                     if(out1_frame(i,1) == 9)
-%                         if(out1_frame_state_cnt(1,j) == num2str(model_choose1((whitch_line),j)) || out1_frame_state_cnt(1,j) == num2str(model_choose1((whitch_line + 1),j)))
-%                             out1_frame_normal = out1_frame_normal + 1;
-%                         else
-%                             out1_frame_x = out1_frame_x + 1;
-%                         end
-%                         if(out1_frame_state(1,j) == 0)
-%                             out1_frame_state(1,j) = 1;
-%                             out1_frame_zero = out1_frame_zero - 1;
-%                         end
-%                     else
-%                         if(out1_frame_state_cnt(1,j) == num2str(model_choose1((whitch_line),j)))
-%                             out1_frame_normal = out1_frame_normal + 1;
-%                         else
-%                             out1_frame_x = out1_frame_x + 1;
-%                         end
-%                         if(out1_frame_state(1,j) == 0)
-%                             out1_frame_state(1,j) = 1;
-%                             out1_frame_zero = out1_frame_zero - 1;
-%                         end
-%                     end
                 end
             end
         end
         out1_frame_state_cnt = strings(1,out1_col);
         out_frame_count(out1_frame(i,2),(6:8)) = [out1_frame_zero,out1_frame_normal,out1_frame_x];
         out_frame_count(out1_frame(i,2),(20:21)) = [(out1_frame_normal+out1_frame_x),out1_frame_normal/(out1_frame_normal+out1_frame_x)];
-%         out_frame_count(out1_frame(i,2),(15:16)) = [(64-out1_frame_zero),(64-out1_frame_zero-out1_frame_x)/(64-out1_frame_zero)];
-%         out_frame_count(out1_frame(i,2),27) = 64-out1_frame_zero-out1_frame_x - out1_frame_normal;
-%         if(out1_frame(i,1) == 7 || out1_frame(i,1) == 8 || out1_frame(i,1) == 9 || out1_frame(i,1) == 10)
-%             out_frame_count(out1_frame(i,2),24) = out1_frame_normal/(out1_frame_normal+out1_frame_x);
-%             out_frame_count(out1_frame(i,2),25) = nan;
-%             out_frame_count(out1_frame(i,2),26) = nan;
-%         elseif(out1_frame(i,1) == 11 || out1_frame(i,1) == 12 || out1_frame(i,1) == 13 || out1_frame(i,1) == 14)
-%             out_frame_count(out1_frame(i,2),24) = nan;
-%             out_frame_count(out1_frame(i,2),25) = out1_frame_normal/(out1_frame_normal+out1_frame_x);
-%             out_frame_count(out1_frame(i,2),26) = nan;
-%         elseif(out1_frame(i,1) == 3 || out1_frame(i,1) == 4 || out1_frame(i,1) == 5 || out1_frame(i,1) == 6)
-%             out_frame_count(out1_frame(i,2),24) = nan;
-%             out_frame_count(out1_frame(i,2),25) = nan;
-%             out_frame_count(out1_frame(i,2),26) = out1_frame_normal/(out1_frame_normal+out1_frame_x);
-%         end
 
         for j = 1:1:out2_col
             if(j ~= 5 && j ~= 10 && j ~= 15)
@@ -207,48 +155,13 @@ for i = 1:1:max_line
                         out2_frame_state(1,j) = 1;
                         out2_frame_zero = out2_frame_zero - 1;
                     end
-%                     if(out1_frame(i,1) == 9)
-%                         if(out2_frame_state_cnt(1,j) == num2str(model_choose2((whitch_line),j)) || out2_frame_state_cnt(1,j) == num2str(model_choose2((whitch_line + 1),j)))
-%                             out2_frame_normal = out2_frame_normal + 1;
-%                         else
-%                             out2_frame_x = out2_frame_x + 1;
-%                         end
-%                         if(out2_frame_state(1,j) == 0)
-%                             out2_frame_state(1,j) = 1;
-%                             out2_frame_zero = out2_frame_zero - 1;
-%                         end
-%                     else
-%                         if(out2_frame_state_cnt(1,j) == num2str(model_choose2((whitch_line),j)))
-%                             out2_frame_normal = out2_frame_normal + 1;
-%                         else
-%                             out2_frame_x = out2_frame_x + 1;
-%                         end
-%                         if(out2_frame_state(1,j) == 0)
-%                             out2_frame_state(1,j) = 1;
-%                             out2_frame_zero = out2_frame_zero - 1;
-%                         end
-%                     end
                 end
             end
         end
         out2_frame_state_cnt = strings(1,out2_col);
         out_frame_count(out1_frame(i,2),(9:11)) = [out2_frame_zero,out2_frame_normal,out2_frame_x];
         out_frame_count(out1_frame(i,2),(22:23)) = [(out2_frame_normal+out2_frame_x),out2_frame_normal/(out2_frame_normal+out2_frame_x)];
-%         out_frame_count(out1_frame(i,2),(17:18)) = [(16-out2_frame_zero),(16-out2_frame_zero-out2_frame_x)/(16-out2_frame_zero)];
-%         out_frame_count(out1_frame(i,2),36) = 16-out2_frame_zero-out2_frame_x - out2_frame_normal;
-%         if(out1_frame(i,1) == 7 || out1_frame(i,1) == 8 || out1_frame(i,1) == 9 || out1_frame(i,1) == 10)
-%             out_frame_count(out1_frame(i,2),28) = out2_frame_normal/(out2_frame_normal+out2_frame_x);
-%             out_frame_count(out1_frame(i,2),29) = nan;
-%             out_frame_count(out1_frame(i,2),30) = nan;
-%         elseif(out1_frame(i,1) == 11 || out1_frame(i,1) == 12 || out1_frame(i,1) == 13 || out1_frame(i,1) == 14)
-%             out_frame_count(out1_frame(i,2),28) = nan;
-%             out_frame_count(out1_frame(i,2),29) = out2_frame_normal/(out2_frame_normal+out2_frame_x);
-%             out_frame_count(out1_frame(i,2),30) = nan;
-%         elseif(out1_frame(i,1) == 3 || out1_frame(i,1) == 4 || out1_frame(i,1) == 5 || out1_frame(i,1) == 6)
-%             out_frame_count(out1_frame(i,2),28) = nan;
-%             out_frame_count(out1_frame(i,2),29) = nan;
-%             out_frame_count(out1_frame(i,2),35) = out2_frame_normal/(out2_frame_normal+out2_frame_x);
-%         end
+
         for j = 1:1:out3_col
             if(j ~= 3)
                 if(out3_frame_state_cnt(1,j) ~= '0' && out3_frame_state_cnt(1,j) ~= '')
@@ -261,27 +174,6 @@ for i = 1:1:max_line
                         out3_frame_state(1,j) = 1;
                         out3_frame_zero = out3_frame_zero - 1;
                     end
-%                     if(out1_frame(i,1) == 9)
-%                         if(out3_frame_state_cnt(1,j) == num2str(model_choose3((whitch_line),j)) || out3_frame_state_cnt(1,j) == num2str(model_choose3((whitch_line + 1),j)))
-%                             out3_frame_normal = out3_frame_normal + 1;
-%                         else
-%                             out3_frame_x = out3_frame_x + 1;
-%                         end
-%                         if(out3_frame_state(1,j) == 0)
-%                             out3_frame_state(1,j) = 1;
-%                             out3_frame_zero = out3_frame_zero - 1;
-%                         end
-%                     else
-%                         if(out3_frame_state_cnt(1,j) == num2str(model_choose3((whitch_line),j)))
-%                             out3_frame_normal = out3_frame_normal + 1;
-%                         else
-%                             out3_frame_x = out3_frame_x + 1;
-%                         end
-%                         if(out3_frame_state(1,j) == 0)
-%                             out3_frame_state(1,j) = 1;
-%                             out3_frame_zero = out3_frame_zero - 1;
-%                         end
-%                     end
                 end
             end
         end
@@ -299,27 +191,6 @@ for i = 1:1:max_line
                 out4_frame_state = 1;
                 out4_frame_zero = out4_frame_zero - 1;
             end
-%             if(out1_frame(i,1) == 9)
-%                 if(out4_frame_state_cnt == num2str(model_choose4((whitch_line),1)) || out4_frame_state_cnt == num2str(model_choose4((whitch_line + 1),1)))
-%                     out4_frame_normal = 1;
-%                 else
-%                     out4_frame_x = 1;
-%                 end
-%                 if(out4_frame_state == 0)
-%                     out4_frame_state = 1;
-%                     out4_frame_zero = out4_frame_zero - 1;
-%                 end
-%             else
-%                 if(out4_frame_state_cnt == num2str(model_choose4((whitch_line),1)))
-%                     out4_frame_normal = 1;
-%                 else
-%                     out4_frame_x = 1;
-%                 end
-%                 if(out4_frame_state == 0)
-%                     out4_frame_state = 1;
-%                     out4_frame_zero = out4_frame_zero - 1;
-%                 end
-%             end
         end
         out4_frame_state_cnt = strings(1,out4_col);
         out_frame_count(out1_frame(i,2),(15:17)) = [out4_frame_zero,out4_frame_normal,out4_frame_x];

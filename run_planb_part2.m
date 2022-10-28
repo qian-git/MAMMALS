@@ -46,8 +46,9 @@ zero_feedback = strings(level_4_row,level_4_row);
 output_path = strcat('.\output\91\',out_put{excel_out_cnt},'.xlsx');
 % per_flag_1 = 0.65;per_flag_2 = 0.6;per_flag_3 = 0.55;per_flag_4 = 0.55;
 per_flag_1 = per_flag(excel_out_cnt,1);per_flag_2 = per_flag(excel_out_cnt,2);per_flag_3 = per_flag(excel_out_cnt,3);per_flag_4 = per_flag(excel_out_cnt,4);
-%模型构成：level_1_model{i,j}{1}{1,2}：{i.j}表示不同格子的，{1}表示第一个模型，{1,2}表示符号及计数
-for i = 1:1:level_1_row     %level_1 初始化
+%model: level_1_model{i,j}{1}{1,2}:
+%{i.j}means different area，{1}means which model，{1,2}means counter
+for i = 1:1:level_1_row     %level_1 initial
     for j = 1:1:level_1_col
         level_1_model{i,j} = {};
         level_1_model_more{i,j} = {};
@@ -66,7 +67,7 @@ for i = 1:1:level_1_row     %level_1 初始化
         end
     end
 end
-for i = 1:1:level_2_row     %level_2 初始化
+for i = 1:1:level_2_row     %level_2 initial
     for j = 1:1:level_2_col
         level_2_model{i,j} = {};
         level_2_model_more{i,j} = {};
@@ -85,7 +86,7 @@ for i = 1:1:level_2_row     %level_2 初始化
         end
     end
 end
-for i = 1:1:level_3_row     %level_3 初始化
+for i = 1:1:level_3_row     %level_3 initial
     for j = 1:1:level_3_col
         level_3_model{i,j} = {};
         level_3_model_more{i,j} = {};
@@ -104,7 +105,7 @@ for i = 1:1:level_3_row     %level_3 初始化
         end
     end
 end
-for i = 1:1:level_4_row     %level_4 初始化
+for i = 1:1:level_4_row     %level_4 initial
     for j = 1:1:level_4_col
         level_4_model{i,j} = {};
         level_4_model_more{i,j} = {};
@@ -203,7 +204,7 @@ for temp = begin_frame:1:end_frame
 %     show = show_1(show,level_3_output,row,col);
 %     show = show_1(show,level_4_output,row,col);
     
-% 	imwrite(show,strcat('./pic/',sprintf('%05d.jpg',temp_all+temp)),'jpg');% 保存帧
+% 	imwrite(show,strcat('./pic/',sprintf('%05d.jpg',temp_all+temp)),'jpg');
     temp_0 = temp_0 + 1;
 end
 ramdom_cout = ramdom_cout + 1;

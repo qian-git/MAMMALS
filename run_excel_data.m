@@ -192,11 +192,7 @@ for i = 1:1:max_line
         out4_frame_x = 0;out4_frame_normal = 0;
         out_frame_count(out1_frame(i,2),1) = out1_frame(i,2);out_frame_count(out1_frame(i,2),2) = out1_frame(i,1);
     end
-    
-    
-    
-    
-    
+
     
     for j = 1:1:out1_col
         if(j ~= 9 && j ~= 18 && j ~= 27 && j ~= 36 && j ~= 45 && j ~= 54 && j ~= 63)

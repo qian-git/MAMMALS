@@ -31,7 +31,7 @@ video_name = obj_video(ramdom_obj_num).name;
 video_path = strcat(video_path_0,'\',video_name);
 
 obj = VideoReader(video_path);
-numframes = obj.Duration * obj.FrameRate; %视频总帧数
+numframes = obj.Duration * obj.FrameRate;
 begin_frame = 1; end_frame = fix(numframes);
 % for tmp2 = 0:3
 % while hasFrame(obj)
@@ -53,7 +53,7 @@ for temp = begin_frame:1:end_frame
     frame(:,col+1:sizeb,:) = [];
     
     image_old = image_r;
-    image_r = frame(:,:,2);%取绿色值
+    image_r = frame(:,:,2);%green
     data_change_pix = zeros(row,col);
     pre_change_pix = zeros(row,col);
     
@@ -65,7 +65,7 @@ for temp = begin_frame:1:end_frame
     level_2_output = strings(level_2_row,level_2_col);
     level_3_output = strings(level_3_row,level_3_col);
     level_4_output = strings(level_4_row,level_4_col);
-    if(temp == begin_frame)     %初始化
+    if(temp == begin_frame)  %initial ref data
         ref_image = image_r;pre_frame_cout = 0;
         data_change_pix = zeros(row,col);level_0 = zeros(row_node_0,col_node_0);
         for i = 1:row_node_0
@@ -206,7 +206,7 @@ for temp = begin_frame:1:end_frame
 %     write_level_2_output(temp,:) = out_0(level_2_row,level_2_col,level_2_output,16);
 %     write_level_3_output(temp,:) = out_0(level_3_row,level_3_col,level_3_output,4);
     write_level_4_output(temp,:) = out_0(level_4_row,level_4_col,level_4_output,4);
-%     imwrite(show,strcat('./pic/',sprintf('%05d.jpg',temp_all+temp)),'jpg');% 保存帧
+%     imwrite(show,strcat('./pic/',sprintf('%05d.jpg',temp_all+temp)),'jpg');
 end
 % xlswrite('D:\document\Thorium\plan_b_new_matlab_devide\output\input_all.xlsx',write_level_0_output,num2str(ramdom_obj_num),'A1');
 % xlswrite('D:\document\Thorium\plan_b_new_matlab_devide\output\input_all_64.xlsx',write_level_1_output,num2str(ramdom_obj_num),'A1');

@@ -8,27 +8,6 @@ function [ level_next_data,model_level,level_model_more,level_model_cnt,series_l
            end
 
            [~,size_series_level] = size(series_level{i,j});
-           
-%            if(lastlevel_output(2*(i-1)+1,2*(j-1)+1) ~= data_state{i,j}{1})
-%                series_level{i,j}{size_series_level + 1} = strcat(num2str(1),lastlevel_output(2*(i-1)+1,2*(j-1)+1));
-%                size_series_level = size_series_level + 1;
-%                data_state{i,j}{1} = lastlevel_output(2*(i-1)+1,2*(j-1)+1);
-%            end
-%            if(lastlevel_output(2*(i-1)+1,2*j) ~= data_state{i,j}{2})
-%                series_level{i,j}{size_series_level + 1} = strcat(num2str(2),lastlevel_output(2*(i-1)+1,2*j));
-%                size_series_level = size_series_level + 1;
-%                data_state{i,j}{2} = lastlevel_output(2*(i-1)+1,2*j);
-%            end
-%            if(lastlevel_output(2*i,2*(j-1)+1) ~= data_state{i,j}{3})
-%                series_level{i,j}{size_series_level + 1} = strcat(num2str(3),lastlevel_output(2*i,2*(j-1)+1));
-%                size_series_level = size_series_level + 1;
-%                data_state{i,j}{3} = lastlevel_output(2*i,2*(j-1)+1);
-%            end
-%            if(lastlevel_output(2*i,2*j) ~= data_state{i,j}{4})
-%                series_level{i,j}{size_series_level + 1} = strcat(num2str(4),lastlevel_output(2*i,2*j));
-% %                    size_series_level = size_series_level + 1;
-%                data_state{i,j}{4} = lastlevel_output(2*i,2*j);
-
 
            if(size_series_level >= 2)
                if(lastlevel_output(2*(i-1)+1,2*(j-1)+1) ~= data_state{i,j}{1})
@@ -56,19 +35,6 @@ function [ level_next_data,model_level,level_model_more,level_model_cnt,series_l
                        size_series_level = size_series_level + 1;
                        data_state{i,j}{1} = lastlevel_output(2*(i-1)+1,2*(j-1)+1);
                    end
-                   
-%                    if(lastlevel_output(2*(i-1)+1,2*(j-1)+1) ~= '0' && extractBefore(series_level{i,j}{size_series_level},2) == num2str(1) && data_state{i,j}{1} ~= '0')
-%                        series_level{i,j}{size_series_level} = strcat(num2str(1),lastlevel_output(2*(i-1)+1,2*(j-1)+1));
-%                        data_state{i,j}{1} = lastlevel_output(2*(i-1)+1,2*(j-1)+1);
-%                    else
-%                        series_level{i,j}{size_series_level + 1} = strcat(num2str(1),lastlevel_output(2*(i-1)+1,2*(j-1)+1));
-%                        size_series_level = size_series_level + 1;
-%                        data_state{i,j}{1} = lastlevel_output(2*(i-1)+1,2*(j-1)+1);
-%                    end
-%                    if(size_series_level >= 2 && series_level{i,j}{size_series_level} == series_level{i,j}{size_series_level-1})
-%                        series_level{i,j}(size_series_level) = [];
-%                        size_series_level = size_series_level - 1;
-%                    end
                end
                if(lastlevel_output(2*(i-1)+1,2*j) ~= data_state{i,j}{2})
                    new_data = 1;
@@ -95,18 +61,6 @@ function [ level_next_data,model_level,level_model_more,level_model_cnt,series_l
                        size_series_level = size_series_level + 1;
                        data_state{i,j}{2} = lastlevel_output(2*(i-1)+1,2*j);
                    end
-%                    if(lastlevel_output(2*(i-1)+1,2*j) ~= '0' && extractBefore(series_level{i,j}{size_series_level},2) == num2str(2) && data_state{i,j}{2} ~= '0')
-%                        series_level{i,j}{size_series_level} = strcat(num2str(2),lastlevel_output(2*(i-1)+1,2*j));
-%                        data_state{i,j}{2} = lastlevel_output(2*(i-1)+1,2*j);
-%                    else
-%                        series_level{i,j}{size_series_level + 1} = strcat(num2str(2),lastlevel_output(2*(i-1)+1,2*j));
-%                        size_series_level = size_series_level + 1;
-%                        data_state{i,j}{2} = lastlevel_output(2*(i-1)+1,2*j);
-%                    end
-%                    if(size_series_level >= 2 && series_level{i,j}{size_series_level} == series_level{i,j}{size_series_level-1})
-%                        series_level{i,j}(size_series_level) = [];
-%                        size_series_level = size_series_level - 1;
-%                    end
                end
                if(lastlevel_output(2*i,2*(j-1)+1) ~= data_state{i,j}{3})
                    new_data = 1;
@@ -132,18 +86,6 @@ function [ level_next_data,model_level,level_model_more,level_model_cnt,series_l
                        size_series_level = size_series_level + 1;
                        data_state{i,j}{3} = lastlevel_output(2*i,2*(j-1)+1);
                    end
-%                    if(lastlevel_output(2*i,2*(j-1)+1) ~= '0' && extractBefore(series_level{i,j}{size_series_level},2) == num2str(3) && data_state{i,j}{3} ~= '0')
-%                        series_level{i,j}{size_series_level} = strcat(num2str(3),lastlevel_output(2*i,2*(j-1)+1));
-%                        data_state{i,j}{3} = lastlevel_output(2*i,2*(j-1)+1);
-%                    else
-%                        series_level{i,j}{size_series_level + 1} = strcat(num2str(3),lastlevel_output(2*i,2*(j-1)+1));
-%                        size_series_level = size_series_level + 1;
-%                        data_state{i,j}{3} = lastlevel_output(2*i,2*(j-1)+1);
-%                    end
-%                    if(size_series_level >= 2 && series_level{i,j}{size_series_level} == series_level{i,j}{size_series_level-1})
-%                        series_level{i,j}(size_series_level) = [];
-%                        size_series_level = size_series_level - 1;
-%                    end
                end
                if(lastlevel_output(2*i,2*j) ~= data_state{i,j}{4})
                    new_data = 1;
@@ -169,18 +111,6 @@ function [ level_next_data,model_level,level_model_more,level_model_cnt,series_l
 %                        size_series_level = size_series_level + 1;
                        data_state{i,j}{4} = lastlevel_output(2*i,2*j);
                    end
-%                    if(lastlevel_output(2*i,2*j) ~= '0' && extractBefore(series_level{i,j}{size_series_level},2) == num2str(4) && data_state{i,j}{4} ~= '0')
-%                        series_level{i,j}{size_series_level + 1} = strcat(num2str(4),lastlevel_output(2*i,2*j));
-%                        data_state{i,j}{4} = lastlevel_output(2*i,2*j);
-%                    else
-%                        series_level{i,j}{size_series_level + 1} = strcat(num2str(4),lastlevel_output(2*i,2*j));
-%     %                    size_series_level = size_series_level + 1;
-%                        data_state{i,j}{4} = lastlevel_output(2*i,2*j);
-%                    end
-%                    if(size_series_level >= 2 && series_level{i,j}{size_series_level} == series_level{i,j}{size_series_level-1})
-%                        series_level{i,j}(size_series_level) = [];
-%                        size_series_level = size_series_level - 1;
-%                    end
                end
            else
                if(lastlevel_output(2*(i-1)+1,2*(j-1)+1) ~= data_state{i,j}{1})
@@ -205,31 +135,11 @@ function [ level_next_data,model_level,level_model_more,level_model_cnt,series_l
            end
        end
     end
-    
-%     for i = 1:1:size_i
-%        for j = 1:1:size_j
-%            [~,size_series] = size(series_level{i,j});
-%            if(size_series == 0 || series_level{i,j}{1} == '0')
-%                series_level{i,j}{1} = lastlevel_output(i,j);
-%            else
-%                if(series_level{i,j}{size_series} == '0')
-%                    series_level{i,j} = {};
-%                    series_level{i,j}{1} = lastlevel_output(i,j);
-%                else
-%                    if(series_level{i,j}{size_series} ~= lastlevel_output(i,j))
-%                        series_level{i,j}{size_series + 1} = lastlevel_output(i,j);
-%                    end
-%                end
-%            end
-%        end
-%     end
-%     series_level_buf = series_level;
-    
-    
-    %记得转换成元胞，以及level_1_series转换
+
+
     
     series_full = zeros(size_i,size_j);
-    %比对模型、创建模型及传输                               
+    %trans data                               
     for i = 1:1:size_i
        for j = 1:1:size_j
            [~,size_series] = size(series_level{i,j});
